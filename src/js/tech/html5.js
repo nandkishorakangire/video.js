@@ -13,6 +13,7 @@ import {toTitleCase} from '../utils/str.js';
 import {NORMAL as TRACK_TYPES, REMOTE} from '../tracks/track-types';
 import setupSourceset from './setup-sourceset';
 import {silencePromise} from '../utils/promise';
+import {deprecateForMajor} from '../utils/deprecate';
 
 /**
  * HTML5 Media Controller - Wrapper for HTML5 Media API
@@ -766,28 +767,6 @@ class Html5 extends Tech {
   }
 
   /**
-   * A getter/setter for the `Html5` Tech's source object.
-   * > Note: Please use {@link Html5#setSource}
-   *
-   * @param {Tech~SourceObject} [src]
-   *        The source object you want to set on the `HTML5` techs element.
-   *
-   * @return {Tech~SourceObject|undefined}
-   *         - The current source object when a source is not passed in.
-   *         - undefined when setting
-   *
-   * @deprecated Since version 5.
-   */
-  src(src) {
-    if (src === undefined) {
-      return this.el_.src;
-    }
-
-    // Setting src through `src` instead of `setSrc` will be deprecated
-    this.setSrc(src);
-  }
-
-  /**
    * Reset the tech by removing all sources and then calling
    * {@link Html5.resetMediaElement}.
    */
@@ -1421,6 +1400,28 @@ Html5.resetMediaElement = function(el) {
     }());
   }
 };
+
+/**
+ * A getter/setter for the `Html5` Tech's source object.
+ * > Note: Please use {@link Html5#setSource}
+ *
+ * @param {Tech~SourceObject} [src]
+ *        The source object you want to set on the `HTML5` techs element.
+ *
+ * @return {Tech~SourceObject|undefined}
+ *         - The current source object when a source is not passed in.
+ *         - undefined when setting
+ *
+ * @deprecated Deprecated and will be removed in 9.0. Please use Html5.prototype.setSrc instead.
+ */
+Html5.prototype.src = deprecateForMajor(9, 'Html5.prototype.src', 'Html5.prototype.setSrc', function(src) {
+  if (src === undefined) {
+    return this.el_.src;
+  }
+
+  // Setting src through `src` instead of `setSrc` will be deprecated
+  this.setSrc(src);
+});
 
 /* Native HTML5 element property wrapping ----------------------------------- */
 // Wrap native boolean attributes with getters that check both property and attribute

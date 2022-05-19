@@ -10,14 +10,11 @@ import window from 'global/window';
  *
  * @typedef    {Function} TimeRangeIndex
  *
- * @param      {number} [index=0]
+ * @param      {number} index=0
  *             The range number to return the time for.
  *
  * @return     {number}
  *             The time offset at the specified index.
- *
- * @deprecated The index argument must be provided.
- *             In the future, leaving it out will throw an error.
  */
 
 /**

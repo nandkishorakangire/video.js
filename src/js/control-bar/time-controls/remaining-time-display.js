@@ -67,14 +67,10 @@ class RemainingTimeDisplay extends TimeDisplay {
 
     let time;
 
-    // @deprecated We should only use remainingTimeDisplay
-    // as of video.js 7
     if (this.player_.ended()) {
       time = 0;
     } else if (this.player_.remainingTimeDisplay) {
       time = this.player_.remainingTimeDisplay();
-    } else {
-      time = this.player_.remainingTime();
     }
 
     this.updateTextNode_(time);
@@ -88,16 +84,6 @@ class RemainingTimeDisplay extends TimeDisplay {
  * @private
  */
 RemainingTimeDisplay.prototype.labelText_ = 'Remaining Time';
-
-/**
- * The text that should display over the `RemainingTimeDisplay`s controls. Added to for localization.
- *
- * @type {string}
- * @private
- *
- * @deprecated in v7; controlText_ is not used in non-active display Components
- */
-RemainingTimeDisplay.prototype.controlText_ = 'Remaining Time';
 
 Component.registerComponent('RemainingTimeDisplay', RemainingTimeDisplay);
 export default RemainingTimeDisplay;

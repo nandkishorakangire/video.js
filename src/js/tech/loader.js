@@ -38,13 +38,7 @@ class MediaLoader extends Component {
     if (!options.playerOptions.sources || options.playerOptions.sources.length === 0) {
       for (let i = 0, j = options.playerOptions.techOrder; i < j.length; i++) {
         const techName = toTitleCase(j[i]);
-        let tech = Tech.getTech(techName);
-
-        // Support old behavior of techs being registered as components.
-        // Remove once that deprecated behavior is removed.
-        if (!techName) {
-          tech = Component.getComponent(techName);
-        }
+        const tech = Tech.getTech(techName);
 
         // Check if the browser supports this technology
         if (tech && tech.isSupported()) {

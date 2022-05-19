@@ -3215,13 +3215,7 @@ class Player extends Component {
     // Loop through each playback technology in the options order
     for (let i = 0, j = this.options_.techOrder; i < j.length; i++) {
       const techName = j[i];
-      let tech = Tech.getTech(techName);
-
-      // Support old behavior of techs being registered as components.
-      // Remove once that deprecated behavior is removed.
-      if (!tech) {
-        tech = Component.getComponent(techName);
-      }
+      const tech = Tech.getTech(techName);
 
       // Check if the current tech is defined before continuing
       if (!tech) {

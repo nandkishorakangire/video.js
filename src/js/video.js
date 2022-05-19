@@ -397,23 +397,6 @@ videojs.bind = deprecateForMajor(9, 'videojs.bind', 'native Function.prototype.b
 
 videojs.registerPlugin = Plugin.registerPlugin;
 videojs.deregisterPlugin = Plugin.deregisterPlugin;
-
-/**
- * Deprecated method to register a plugin with Video.js
- *
- * @deprecated Deprecated and will be removed in 9.0. Use videojs.registerPlugin() instead.
- *
- * @param {string} name
- *        The plugin name
- *
- * @param {Plugin|Function} plugin
- *         The plugin sub-class or function
- */
-videojs.plugin = (name, plugin) => {
-  log.warn('videojs.plugin() is deprecated; use videojs.registerPlugin() instead');
-  return Plugin.registerPlugin(name, plugin);
-};
-
 videojs.getPlugins = Plugin.getPlugins;
 videojs.getPlugin = Plugin.getPlugin;
 videojs.getPluginVersion = Plugin.getPluginVersion;
@@ -547,26 +530,6 @@ videojs.xhr = xhr;
 videojs.TextTrack = TextTrack;
 videojs.AudioTrack = AudioTrack;
 videojs.VideoTrack = VideoTrack;
-
-[
-  'isEl',
-  'isTextNode',
-  'createEl',
-  'hasClass',
-  'addClass',
-  'removeClass',
-  'toggleClass',
-  'setAttributes',
-  'getAttributes',
-  'emptyEl',
-  'appendContent',
-  'insertContent'
-].forEach(k => {
-  videojs[k] = function() {
-    log.warn(`videojs.${k}() is deprecated; use videojs.dom.${k}() instead`);
-    return Dom[k].apply(null, arguments);
-  };
-});
 
 videojs.computedStyle = deprecateForMajor(9, 'videojs.computedStyle', 'videojs.dom.computedStyle', Dom.computedStyle);
 

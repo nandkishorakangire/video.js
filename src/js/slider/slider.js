@@ -66,9 +66,6 @@ class Slider extends Component {
     this.on('keydown', this.handleKeyDown_);
     this.on('click', this.handleClick_);
 
-    // TODO: deprecated, controlsvisible does not seem to be fired
-    this.on(this.player_, 'controlsvisible', this.update);
-
     if (this.playerEvent) {
       this.on(this.player_, this.playerEvent, this.update);
     }
@@ -92,7 +89,6 @@ class Slider extends Component {
     this.off('touchstart', this.handleMouseDown_);
     this.off('keydown', this.handleKeyDown_);
     this.off('click', this.handleClick_);
-    this.off(this.player_, 'controlsvisible', this.update_);
     this.off(doc, 'mousemove', this.handleMouseMove_);
     this.off(doc, 'mouseup', this.handleMouseUp_);
     this.off(doc, 'touchmove', this.handleMouseMove_);
